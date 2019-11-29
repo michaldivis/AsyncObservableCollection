@@ -144,13 +144,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9"/>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AsyncObservableCollectionTest.Mobile\AsyncObservableCollectionTest.Mobile.csproj">
-      <Project>{EFD67EBF-235D-46E2-BA19-1FCE467C03F8}</Project>
-      <Name>AsyncObservableCollectionTest.Mobile</Name>
+    <ProjectReference Include="..\AC.Mobile\AC.Mobile.csproj">
+      <Project>{1D7F5043-A94F-41FB-9F46-B4683D395846}</Project>
+      <Name>AC.Mobile</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
