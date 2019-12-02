@@ -2,18 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.0.0.1</Version>
+    <Version>1.0.0.2</Version>
     <PackageId>Divis.AsyncObservableCollection</PackageId>
     <Authors>Michal Diviš</Authors>
     <Product>AsyncObservableCollection</Product>
     <Description>An enhanced cross-platform ObservableCollection&lt;T&gt; that let's you use it asynchronously with ease by initializing it with a dispatcher, that all the additions and other actions go through. It also has the AddRange method.</Description>
-    <RepositoryUrl>https://gitlab.com/michaldivis/asyncobservablecollection</RepositoryUrl>
+    <RepositoryUrl>https://github.com/michaldivis/AsyncObservableCollection</RepositoryUrl>
     <RootNamespace>Divis.AsyncObservableCollection</RootNamespace>
     <AssemblyName>Divis.AsyncObservableCollection</AssemblyName>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <ApplicationIcon></ApplicationIcon>
-    <PackageProjectUrl>https://gitlab.com/michaldivis/asyncobservablecollection</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/michaldivis/AsyncObservableCollection</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>
