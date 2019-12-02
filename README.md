@@ -1,1 +1,1 @@
-[Link to Documentation](documentation)
+[Link to Documentation](home)
