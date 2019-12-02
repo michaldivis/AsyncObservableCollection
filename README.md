@@ -1,1 +1,1 @@
-[Link to Documentation](home)
+[Check out the wiki](/%2E%2E/wikis/home)
