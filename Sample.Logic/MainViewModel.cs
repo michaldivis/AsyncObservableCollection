@@ -8,7 +8,7 @@ using Logic.Mvvm;
 
 namespace Logic
 {
-    public class TheViewModel : BindableObject
+    public class MainViewModel : BindableObject
     {
         private bool _isBusy;
         public bool IsBusy

@@ -49,10 +49,6 @@
         </Style>
     </Window.Resources>
 
-    <Window.DataContext>
-        <logic:TheViewModel />
-    </Window.DataContext>
-
     <Grid>
 
         <Grid.RowDefinitions>

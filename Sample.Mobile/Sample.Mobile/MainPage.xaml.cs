@@ -1,36 +1,53 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Divis.AsyncObservableCollection;
 using Logic;
 using Xamarin.Forms;
 
 namespace Sample.Mobile
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        private readonly TheViewModel _model;
+        private readonly MainViewModel _model;
         public MainPage()
         {
             InitializeComponent();
 
-            _model = new TheViewModel();
+            _model = new MainViewModel();
             this.BindingContext = _model;
 
-            InitAsyncCollections();
+            //call the initialize method for async collections
+            InitAsyncCollectionsAutomatically(_model);
         }
 
-        private void InitAsyncCollections()
+        /// <summary>
+        /// Initializes all properties that implement the IAsyncObservableCollection interface
+        /// </summary>
+        /// <param name="model">The object, that holds the collections</param>
+        private void InitAsyncCollectionsAutomatically(object model)
         {
-            foreach (var prop in _model.GetType().GetProperties())
+            //select all properties that implement IAsyncObservableCollection
+            var collections = model.GetType().GetProperties()
+                .Where(a => typeof(IAsyncObservableCollection).IsAssignableFrom(a.PropertyType))
+                .Select(a => a.GetValue(model) as IAsyncObservableCollection);
+
+            //initialize them all
+            InitAsyncCollections(collections);
+        }
+
+        /// <summary>
+        /// Initializes an enumerable of IAsyncObservableCollection
+        /// </summary>
+        /// <param name="collections">The collections that need to be initialized</param>
+        private void InitAsyncCollections(IEnumerable<IAsyncObservableCollection> collections)
+        {
+            foreach (var collection in collections)
             {
-                var value = prop.GetValue(_model);
-                if (value is IAsyncObservableCollection collection)
-                {
-                    collection.Init(action => Device.BeginInvokeOnMainThread(() => action?.Invoke()));
-                }
+                //initialize the collection
+                collection.Init(action => Device.BeginInvokeOnMainThread(() => action?.Invoke()));
             }
         }
 

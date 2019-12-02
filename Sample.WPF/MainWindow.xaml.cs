@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using Divis.AsyncObservableCollection;
 using Logic;
 
@@ -9,26 +11,43 @@ namespace Sample.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly TheViewModel _model;
+        private readonly MainViewModel _model;
         public MainWindow()
         {
             InitializeComponent();
 
-            _model = new TheViewModel();
+            _model = new MainViewModel();
             this.DataContext = _model;
 
-            InitAsyncCollections();
+            //call the initialize method for async collections
+            InitAsyncCollectionsAutomatically(_model);
         }
 
-        private void InitAsyncCollections()
+        /// <summary>
+        /// Initializes all properties that implement the IAsyncObservableCollection interface
+        /// </summary>
+        /// <param name="model">The object, that holds the collections</param>
+        private void InitAsyncCollectionsAutomatically(object model)
         {
-            foreach (var prop in _model.GetType().GetProperties())
+            //select all properties that implement IAsyncObservableCollection
+            var collections = model.GetType().GetProperties()
+                .Where(a => typeof(IAsyncObservableCollection).IsAssignableFrom(a.PropertyType))
+                .Select(a => a.GetValue(model) as IAsyncObservableCollection);
+
+            //initialize them all
+            InitAsyncCollections(collections);
+        }
+
+        /// <summary>
+        /// Initializes an enumerable of IAsyncObservableCollection
+        /// </summary>
+        /// <param name="collections">The collections that need to be initialized</param>
+        private void InitAsyncCollections(IEnumerable<IAsyncObservableCollection> collections)
+        {
+            foreach (var collection in collections)
             {
-                var value = prop.GetValue(_model);
-                if (value is IAsyncObservableCollection collection)
-                {
-                    collection.Init(action => Dispatcher?.Invoke(() => action?.Invoke()));
-                }
+                //initialize the collection
+                collection.Init(action => Dispatcher?.Invoke(() => action?.Invoke()));
             }
         }
 

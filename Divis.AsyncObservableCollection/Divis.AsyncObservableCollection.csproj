@@ -11,6 +11,9 @@
     <RootNamespace>Divis.AsyncObservableCollection</RootNamespace>
     <AssemblyName>Divis.AsyncObservableCollection</AssemblyName>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <ApplicationIcon></ApplicationIcon>
+    <PackageProjectUrl>https://gitlab.com/michaldivis/asyncobservablecollection</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>
