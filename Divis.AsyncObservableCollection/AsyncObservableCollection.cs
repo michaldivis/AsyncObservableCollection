@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace Divis.AsyncObservableCollection
 {
@@ -22,6 +21,16 @@ namespace Divis.AsyncObservableCollection
             }
 
             _dispatcher?.Invoke(() => base.Add(item));
+        }
+
+        public new void Remove(T item)
+        {
+            if (_dispatcher == null)
+            {
+                throw new Exception($"Dispatcher is null. Call {nameof(Init)} before using this");
+            }
+
+            _dispatcher?.Invoke(() => base.Remove(item));
         }
 
         public new void Clear()
